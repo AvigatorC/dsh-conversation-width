@@ -20,7 +20,17 @@ DSH Web UI 的对话内容列默认带左右拖动手柄，宽度记在 `localSt
 
 ## 安装
 
-与其它 dsh 插件一致：在「设置 → 插件」中安装，或用插件市场（如 `dshmarket`）搜索 `dsh-conversation-width`。
+本插件**未发布到 npm**，从仓库安装即可：
+
+```powershell
+git clone https://github.com/AvigatorC/dsh-conversation-width.git
+```
+
+然后把克隆下来的目录作为本地插件装进当前 DSH profile（`plugin_manager` 的 `install_bundle` 接受目录路径），例如让会话里的 Agent 执行：
+
+> 把 `D:\Code\dsh-conversation-width` 装成插件
+
+装好后打开 **设置 → 通用**，在「字号大小」下方选择模式即可。卸载/升级：`git pull` 后刷新窗口（DSH 会热替换插件模块），要移除则用同一个 `plugin_manager` 的 `remove_bundle`。
 
 ## 实现要点
 
@@ -57,6 +67,6 @@ Developed and verified against dsh `0.2.1-rc.3`. No `engines` requirement is dec
 
 Type a value directly (Enter or blur commits) or use the hover arrows (step 10px / 1%).
 
-Install it like any other dsh plugin (Settings → Plugins, or a market such as `dshmarket`, searching for `dsh-conversation-width`).
+Not published to npm: clone the repository and install that directory as a local bundle through `plugin_manager` (`install_bundle` accepts a directory path). Pull and refresh to upgrade.
 
 Repository: <https://github.com/AvigatorC/dsh-conversation-width>. MIT licensed.
