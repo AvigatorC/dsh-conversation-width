@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Fixed Conversation Width",
+    "description": "Pins the conversation column to a pixel width or a share of the conversation column; the setting lives on the General settings page."
+  }
+}

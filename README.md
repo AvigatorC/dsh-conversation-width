@@ -1,0 +1,62 @@
+# dsh-conversation-width
+
+把 DSH（DeepSeek Harness）Web 界面的「对话框」内容列宽度固定下来：可以锁定为像素值，也可以按窗口比例随缩放变化。设置项位于 **设置 → 通用**，紧跟在「字号大小」之后。
+
+仓库：<https://github.com/AvigatorC/dsh-conversation-width> · 版本：v1.0.0 · 许可：MIT
+
+DSH Web UI 的对话内容列默认带左右拖动手柄，宽度记在 `localStorage`。装了本插件后可三选一：
+
+| 模式 | 行为 |
+| --- | --- |
+| 默认可调 | 完全不干预，保留原生左右拖动 |
+| 固定像素 | 锁死为 420–2400px，拖动手柄隐藏 |
+| 窗口比例 | 40–100%，随窗口缩放自动跟随 |
+
+数值框支持直接键入（Enter / 失焦提交），悬停或聚焦时出现上下箭头微调（像素 ±10，比例 ±1）。
+
+## 兼容性
+
+在 dsh `0.2.1-rc.3` 上开发与验证。插件不声明 `engines`，因此版本号不会拦截安装；若某个 dsh 版本的会话体没有 `data-conversation-content` 属性，宽度的 CSS 覆盖会**静默失效**（不报错、不影响界面，只是不生效）。
+
+## 安装
+
+与其它 dsh 插件一致：在「设置 → 插件」中安装，或用插件市场（如 `dshmarket`）搜索 `dsh-conversation-width`。
+
+## 实现要点
+
+- 宽度覆盖作用在会话体已经发布的 CSS 变量 `--dsh-chat-content-width` 上（`!important`），正文列与输入框卡片的 `max-width` 都读它，因此不改动 DSH 组件本身、也不与拖拽逻辑冲突。
+- 比例模式读取 DSH 自己写出的 `--dsh-conversation-column-width`，所以是「对话列宽 × N%」，侧栏开合时会跟着自适应。
+- 锚点是会话体上的 `data-conversation-content` 属性。若将来 DSH 改名，覆盖会静默失效，只需改 `client.js` 里 `widthCss()` 的选择器。
+- 设置行复用官方 `@deepseek-ai/dsh-client-ui-primitives` 的 `Menu` 与箭头图标（与「工作步骤展示」等原生行同款）；该模块不可用时自动退回原生 `select`，不会让行崩掉。
+
+## 存储
+
+`localStorage["dsh.conversationWidth"]`，形如：
+
+```json
+{ "mode": "percent", "px": 820, "percent": 72 }
+```
+
+想恢复默认，把模式切回「默认可调」即可；清掉这个键等于恢复出厂。
+
+## License
+
+MIT
+
+---
+
+## English
+
+Pins the conversation column of the DeepSeek Harness Web UI to a pixel width, or to a share of the conversation column that follows the window. The setting is a row on **Settings → General**, right after the font-size row.
+
+Developed and verified against dsh `0.2.1-rc.3`. No `engines` requirement is declared, so no version gate blocks installation.
+
+- **Default (draggable)** leaves the shipped drag handles untouched.
+- **Fixed pixels** locks 420–2400px and hides the handles.
+- **Share of window** uses 40–100% of the conversation column, so it scales with the window.
+
+Type a value directly (Enter or blur commits) or use the hover arrows (step 10px / 1%).
+
+Install it like any other dsh plugin (Settings → Plugins, or a market such as `dshmarket`, searching for `dsh-conversation-width`).
+
+Repository: <https://github.com/AvigatorC/dsh-conversation-width>. MIT licensed.
