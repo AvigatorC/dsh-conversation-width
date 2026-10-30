@@ -20,17 +20,23 @@ DSH Web UI 的对话内容列默认带左右拖动手柄，宽度记在 `localSt
 
 ## 安装
 
-本插件**未发布到 npm**，从仓库安装即可：
+### 从插件市场安装
+
+本插件已投递到 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)（dsh 插件市场目录）。收录后即可在 DSH 的插件市场（如 [dsh-market](https://github.com/dsh-market/dsh-market)）里搜索 `dsh-conversation-width` 一键安装；市场按本仓库源码安装，不需要 npm 包。
+
+> 尚未收录、或市场里还搜不到时，用下面的方式安装，功能完全一样。
+
+### 从仓库安装
 
 ```powershell
 git clone https://github.com/AvigatorC/dsh-conversation-width.git
 ```
 
-然后把克隆下来的目录作为本地插件装进当前 DSH profile（`plugin_manager` 的 `install_bundle` 接受目录路径），例如让会话里的 Agent 执行：
+把克隆下来的目录作为本地插件装进当前 DSH profile（`plugin_manager` 的 `install_bundle` 接受目录路径），例如让会话里的 Agent 执行：
 
 > 把 `D:\Code\dsh-conversation-width` 装成插件
 
-装好后打开 **设置 → 通用**，在「字号大小」下方选择模式即可。卸载/升级：`git pull` 后刷新窗口（DSH 会热替换插件模块），要移除则用同一个 `plugin_manager` 的 `remove_bundle`。
+装好后打开 **设置 → 通用**，在「字号大小」下方选择模式即可。升级：`git pull` 后刷新窗口（DSH 会热替换插件模块）；移除：同一个 `plugin_manager` 的 `remove_bundle`。
 
 ## 实现要点
 
@@ -67,6 +73,10 @@ Developed and verified against dsh `0.2.1-rc.3`. No `engines` requirement is dec
 
 Type a value directly (Enter or blur commits) or use the hover arrows (step 10px / 1%).
 
-Not published to npm: clone the repository and install that directory as a local bundle through `plugin_manager` (`install_bundle` accepts a directory path). Pull and refresh to upgrade.
+## Install
+
+**From a plugin market** — once the plugin is listed in [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin), search `dsh-conversation-width` in a DSH market (e.g. [dsh-market](https://github.com/dsh-market/dsh-market)); markets install straight from this repository, so no npm package is needed.
+
+**From source** — clone the repository and install that directory as a local bundle through `plugin_manager` (`install_bundle` accepts a directory path). Pull and refresh to upgrade.
 
 Repository: <https://github.com/AvigatorC/dsh-conversation-width>. MIT licensed.
